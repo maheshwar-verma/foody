@@ -1,6 +1,6 @@
 export const Logo_Url="https://tse3.mm.bing.net/th?id=OIP.z0g2IWh4iGbk8TECOC_6lgHaHa&pid=Api&P=0&h=180";
-export const ImgUrl="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
-export const Menu_List="https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=26.144138&lng=85.398744&restaurantId=";
+export const ImgUrl="https://corsproxy.io/?https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
+export const Menu_List="https://corsproxy.io/?https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=26.144138&lng=85.398744&restaurantId=";
 export const Restraunts=[
     {
     "info": {
