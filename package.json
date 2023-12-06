@@ -2,7 +2,6 @@
   "name": "first-project-updated",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "rm -rf .parcel-cache && parcel index.html",
     "build": "rm -rf .parcel-cache && parcel build index.html",
