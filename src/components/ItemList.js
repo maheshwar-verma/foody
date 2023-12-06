@@ -6,13 +6,13 @@ import toast from "react-hot-toast";
 const ItemList=({items,addButton})=>{
     const dispatch=useDispatch();
 
-    handleAddItem=(item)=>{
+   const handleAddItem=(item)=>{
         dispatch(addItem(item));
         toast("Item added to Cart",{
             icon: "😋"
         });
     }
-    handleRemoveItem=(item)=>{
+   const handleRemoveItem=(item)=>{
         dispatch(removeItem(item));
         toast.success("Item removed from cart");
     }
