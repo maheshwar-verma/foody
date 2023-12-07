@@ -28,6 +28,7 @@
     "@heroicons/react": "^2.0.18",
     "@parcel/transformer-react-refresh-wrap": "^2.10.2",
     "@reduxjs/toolkit": "^1.9.7",
+    "cors": "^2.8.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",

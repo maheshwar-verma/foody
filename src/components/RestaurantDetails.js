@@ -7,6 +7,7 @@ const RestaurantDetails = () => {
      const { id } = useParams();
      //console.log(id);
      const [restaurantInfo, title] = useResturantInfo(id);
+  //   const newTitle=title?.groupedCard?.cardGroupMap?.REGULAR?.cards;
     const [showIndex,setShowIndex]=useState(null);
      // return (!restaurantInfo) ? <Shimmer /> : <div className="menu">
      //      <div className="flex flex-wrap">
@@ -42,7 +43,7 @@ const RestaurantDetails = () => {
      // </div>;
      // console.log(id);
      // console.log(restaurantInfo);
-     // console.log(title);
+    //  console.log(title);
      const categories=title.filter((c)=>
          c?.card?.card?.["@type"]==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
      );

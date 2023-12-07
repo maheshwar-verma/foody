@@ -49,9 +49,9 @@ try {
    }
   }
   //const {userName,setUserName}=useContext(UserContext);
-
+    console.log(AllRestraunts);
   return AllRestraunts.length===0?<Shimmer/>:<>
-  <div className="mx-auto w-12/12 bg-gray-200 ">
+  <div className="mx-auto w-full bg-gray-200 ">
   <div className="flex flex-wrap justify-between my-2 p-2 shadow-md">
       <div className="">
       <input

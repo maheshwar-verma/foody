@@ -17,6 +17,8 @@ const useResturantInfo=(id)=>{
         }
     },[id])
     useEffect(()=>{HandleEffect()},[HandleEffect]);
+    console.log(title);
+    console.log(restaurantInfo);
     return [restaurantInfo,title];
 }
 export default useResturantInfo;

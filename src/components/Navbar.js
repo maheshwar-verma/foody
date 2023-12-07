@@ -48,7 +48,7 @@ function Navbar(){
                 </li> */}
                
             
-            <button onClick={handleLogin} className="bg-gray-800 hover:bg-gray-500 duration-500 rounded text-red-500 mx-3 py-2 px-5 font-[poppins] ease-in">{islogin?"Log out":"Login"}</button>
+            <button onClick={handleLogin} className="bg-gray-800 hover:bg-gray-500 duration-500 rounded text-red-500 mx-3 py-2 px-5 ease-in">{islogin?"Log out":"Login"}</button>
            </ul>
            
          </div>

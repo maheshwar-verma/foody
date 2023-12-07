@@ -7,7 +7,7 @@ const err=useRouteError();
     return <div style={{  position: "absolute",
     left: "50%",
     top: "50%",
-    webkitTransform: "translate(-50%, -50%)",
+    WebkitTransform: "translate(-50%, -50%)",
     transform: "translate(-50%, -50%)"}}>
         <h1>Oops Something went wrong!!!!!!</h1>
         <h2>{err?.error?.message}</h2>
