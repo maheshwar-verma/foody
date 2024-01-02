@@ -1,13 +1,26 @@
-import React, { useState,useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useState,useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../utils/userContext";
 import { useSelector } from "react-redux";
 import { Logo_Url } from "../constants";
+import { useFirebase } from "./context/firebase";
+import toast from "react-hot-toast";
 function Navbar(){
-    const [islogin,setIsLogin]=useState(false);
-    const handleLogin=()=>{
-        setIsLogin(!islogin);
-    }
+    
+    const firebase=useFirebase();
+    const navigate=useNavigate();
+    useEffect(()=>{
+        if(!firebase.isLoggedin){
+            navigate("/signin");
+        }
+    },[firebase,navigate]);
+    const handleLogin=async()=>{
+        if(firebase.isLoggedin){
+
+            const signout= await firebase.signOutUser();
+            toast("signed out");
+        }
+        }
     const data=useContext(UserContext);
     const[open,setOpen]=useState(false);
     //subscribing to the store using selector
@@ -27,8 +40,8 @@ function Navbar(){
            </div>
            <ul className={`${open?"visible opacity-100":"hidden"} md:opacity-100 mr-5 opacity-0 md:visible md:flex md:space-x-2 md:items-center md:pb-0 pb-4 static bg-amber-200 md:z-auto z-[1] left-0 w-full md:w-auto transition-all duration-500 ease-in`}>
 
-                     <li className="md:ml-8 my-3 mx-3 md:mx-1 text-xl">
-                        <Link to="/" className="text-gray-800 hover:text-gray-400 duration-500">Home</Link>
+                     <li onClick={navigate("/")} className="md:ml-8 my-3 mx-3 md:mx-1 text-xl text-gray-800 hover:text-gray-400 duration-500">
+                        Home
                     </li>
                      <li className="md:ml-8 my-3 mx-3 text-xl">
                         <Link to="/about" className="text-gray-800 hover:text-gray-400 duration-500">About</Link>
@@ -48,7 +61,7 @@ function Navbar(){
                 </li> */}
                
             
-            <button onClick={handleLogin} className="bg-gray-800 hover:bg-gray-500 duration-500 rounded text-red-500 mx-3 py-2 px-5 ease-in">{islogin?"Log out":"Login"}</button>
+            <button onClick={handleLogin} className="bg-gray-800 hover:bg-gray-500 duration-500 rounded text-red-500 mx-3 py-2 px-5 ease-in">{firebase.isLoggedin?"Log out":"Login"}</button>
            </ul>
            
          </div>

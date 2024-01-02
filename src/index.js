@@ -15,6 +15,9 @@ import { Provider } from 'react-redux';
 import appStore from './utils/appStore';
 import Cart from './components/Cart';
 import { Toaster } from 'react-hot-toast';
+import Signin from "./components/pages/Signin";
+import Signup from "./components/pages/Signup";
+import { FirebaseProvider } from './components/context/firebase';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const Instamart=lazy(()=>import("./components/Instamart"));
 const AppLayout=()=>{
@@ -32,11 +35,12 @@ const AppLayout=()=>{
     <Provider store={appStore}>
     <UserContext.Provider value={{name:userName,setUserName}}>
    
-
+<FirebaseProvider>
    <Navbar/>
     <Outlet/>
    <Footer/>
    <Toaster/>
+   </FirebaseProvider>
    </UserContext.Provider>
    </Provider>
    </>;
@@ -76,7 +80,15 @@ const appRouter=createBrowserRouter([
           {
             path:"/Cart",
             element: <Cart/>
-          }
+          },
+          {
+            path:"/signup",
+            element:<Signup/>
+          },
+          {
+            path:"/signin",
+            element:<Signin/>
+          },
       ],
    },
    

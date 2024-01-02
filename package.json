@@ -13,6 +13,7 @@
   "devDependencies": {
     "@babel/core": "^7.23.3",
     "@babel/preset-env": "^7.23.3",
+    "@tailwindcss/forms": "^0.5.7",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.1.2",
     "babel-jest": "^29.7.0",
@@ -29,6 +30,7 @@
     "@parcel/transformer-react-refresh-wrap": "^2.10.2",
     "@reduxjs/toolkit": "^1.9.7",
     "cors": "^2.8.5",
+    "firebase": "^10.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
