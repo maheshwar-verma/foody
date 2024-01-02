@@ -3,6 +3,7 @@ import { useState,useEffect,useContext } from "react";
 import Shimmer from "./Shimmer";
 import isOnline from "../utils/useIsOnline";
 import UserContext from "../utils/userContext";
+import { json } from "react-router-dom";
 function Body(){
     const [inputText,setInputText]=useState("");
     const [AllRestraunts,setAllRestraunts]=useState([]);
@@ -35,11 +36,13 @@ function Body(){
 
    async function GetRestraunts(){
 try {  
-   const data= await fetch("https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.144138&lng=85.398744&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+   const data= await fetch("https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D26.144138%26lng%3D85.398744%26is-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING");
+   console.log(data);
    const Json=await data.json();
- 
-   setAllRestraunts(Json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-   setFilterRestraunt(Json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+
+   console.log(Json);
+   setAllRestraunts(Json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+   setFilterRestraunt(Json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 //data.cards[2].card.card.gridElements.infoWithStyle.restaurants
    //console.log(Json);
   // console.log(Json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);

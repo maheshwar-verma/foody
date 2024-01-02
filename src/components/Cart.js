@@ -3,7 +3,17 @@ import ItemList from "./ItemList";
 import { clearCart } from "../utils/cartSlice";
 import toast from "react-hot-toast";
 import EmptyCart from "./EmptyCart";
+import { useFirebase } from "./context/firebase";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 const Cart= ()=>{
+  const firebase=useFirebase();
+  const navigate=useNavigate();
+  useEffect(()=>{
+      if(!firebase.isLoggedin){
+          navigate("/signin");
+      }
+  },[firebase,navigate]);
     const dispatch=useDispatch();
    const handleClearCart=()=>{
            dispatch(clearCart());
@@ -18,7 +28,7 @@ const Cart= ()=>{
       });
     }
     const cartItems=useSelector((store)=>store.cart.items);
-   // console.log(cartItems);
+    console.log(cartItems);
     let amount=0;
     cartItems.map((item)=>amount+=(item.card.info.price/100 || item?.card?.info?.defaultPrice/100));
     console.log(amount);
