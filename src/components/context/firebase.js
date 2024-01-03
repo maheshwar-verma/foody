@@ -83,6 +83,7 @@ export const FirebaseProvider=(props)=>{
     }
     const signOutUser=()=>{
       signOut(firebaseAuth).then(()=>{
+        toast("Signed out");
       })
       .catch((err)=>{
         toast.error(err);

@@ -3,11 +3,19 @@ import { useState,useEffect,useContext } from "react";
 import Shimmer from "./Shimmer";
 import isOnline from "../utils/useIsOnline";
 import UserContext from "../utils/userContext";
-import { json } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useFirebase } from "./context/firebase";
 function Body(){
     const [inputText,setInputText]=useState("");
     const [AllRestraunts,setAllRestraunts]=useState([]);
     const [filterRestraunt,setFilterRestraunt]=useState([]);
+    const firebase=useFirebase();
+    const navigate=useNavigate();
+    useEffect(()=>{
+         if (!firebase.isLoggedin) {
+            navigate("/signin");
+         }
+    },[firebase,navigate]);
     function HandleClick(){
       console.log(AllRestraunts);
       return setFilterRestraunt(AllRestraunts.filter((EachRestra)=>EachRestra?.info?.name.toLowerCase().includes(inputText.toLowerCase())));

@@ -6,6 +6,7 @@ export default function Example() {
  const [email,setEmail]=useState("");
  const [password,setPassword]=useState("");
  const firebase=useFirebase();
+ console.log(firebase);
  const navigate=useNavigate();
  console.log(firebase);
 
