@@ -50,7 +50,6 @@ function Body(){
                }
                
             }
-         
          }
             catch(err){
                console.log(err);
