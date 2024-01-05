@@ -10,8 +10,18 @@ const useResturantInfo=(id)=>{
                 const damta=await fetch(Menu_List+id);
                 const json=await damta.json();
                 
-                setRestaurantInfo(json?.data?.cards[0]?.card?.card?.info);
-                setTitle(json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+                for (let index = 0; index < json?.data?.cards.length; index++) {
+                    
+                    if(json?.data?.cards[index]?.card?.card?.info){
+                        setRestaurantInfo(json?.data?.cards[index]?.card?.card?.info);
+                       // return;
+                    }
+                    if(json?.data?.cards[index]?.groupedCard?.cardGroupMap?.REGULAR?.cards){
+                        setTitle(json?.data?.cards[index]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+                        //  return;
+                    }
+                    
+                }
             }
             catch(err){
                 console.log(err);
