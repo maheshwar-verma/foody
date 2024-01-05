@@ -33,7 +33,30 @@ function Body(){
       setFilterRestraunt(AllRestraunts);
     }
     useEffect(()=>
-    {GetRestraunts()},[]);
+    {
+      const GetRestraunts=async()=>{
+         try {  
+            const data= await fetch("https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D26.144138%26lng%3D85.398744%26is-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING");
+            console.log(data);
+           console.log("data");
+            const Json=await data.json();
+            console.log(Json);
+            console.log("json");
+            for (let index = 0; index < Json?.data?.cards.length; index++) {
+               if(Json?.data?.cards[index]?.card?.card?.gridElements?.infoWithStyle?.restaurants){
+                 setAllRestraunts(Json?.data?.cards[index]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+                 setFilterRestraunt(Json?.data?.cards[index]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+                 return;
+               }
+               
+            }
+         
+         }
+            catch(err){
+               console.log(err);
+            }
+      }
+      GetRestraunts()},[]);
     console.log("render");
  // not render component (early return)
  const is_Online=isOnline();
@@ -42,23 +65,28 @@ function Body(){
  }
     if(!AllRestraunts) return null;
 
-   async function GetRestraunts(){
-try {  
-   const data= await fetch("https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D26.144138%26lng%3D85.398744%26is-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING");
-   console.log(data);
-   const Json=await data.json();
+//    async function GetRestraunts(){
+// try {  
+//    const data= await fetch("https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D26.144138%26lng%3D85.398744%26is-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING");
+//    console.log(data);
+//   console.log("data");
+//    const Json=await data.json();
+//    console.log(Json);
+//    console.log("json");
+//    for (let index = 0; index < Json?.data?.cards.length; index++) {
+//       if(Json?.data?.cards[index]?.card?.card?.gridElements?.infoWithStyle?.restaurants){
+//         setAllRestraunts(Json?.data?.cards[index]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+//         setFilterRestraunt(Json?.data?.cards[index]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+//         return;
+//       }
+      
+//    }
 
-   console.log(Json);
-   setAllRestraunts(Json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-   setFilterRestraunt(Json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-//data.cards[2].card.card.gridElements.infoWithStyle.restaurants
-   //console.log(Json);
-  // console.log(Json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-}
-   catch(err){
-      console.log(err);
-   }
-  }
+// }
+//    catch(err){
+//       console.log(err);
+//    }
+//   }
   //const {userName,setUserName}=useContext(UserContext);
     console.log(AllRestraunts);
   return AllRestraunts.length===0?<Shimmer/>:<>
