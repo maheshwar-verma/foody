@@ -34,7 +34,7 @@ const Cart= ()=>{
     console.log(amount);
     return <div className="text-center p-4 m-4">
         {cartItems!=0&&<h1 className="font-bold text-2xl">Cart</h1>}
-        <div className="w-6/12 m-auto">
+        <div className="w-8/12 sm:w-6/12 m-auto">
         <ItemList items={cartItems} addButton={false}/>
         
         </div>

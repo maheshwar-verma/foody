@@ -110,7 +110,7 @@ function Body(){
          <label>Username:</label>
          <input className="border border-black" value={userName} onChange={(e)=>setUserName(e.target.value)}/>
       </div> */}
-    <div className='flex flex-wrap justify-start'>
+    <div className='flex flex-wrap w-6/12 sm:w-auto justify-start mx-auto'>
     {filterRestraunt.length===0 && <a href="/"><h1>No Restraunt matching your filter</h1></a>}
      {filterRestraunt.map((restra)=><RestrauntCard key={restra.info.id} {...restra.info}/> )}
      

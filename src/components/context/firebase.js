@@ -44,7 +44,7 @@ export const FirebaseProvider=(props)=>{
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // ..
+         toast.error(errorMessage);
       });;
     }
     const signInUserWithEmailAndPassword=(email,password)=>{
@@ -54,7 +54,7 @@ export const FirebaseProvider=(props)=>{
            console.log(user);
         })
         .catch((error)=>{
-          console.log(error.code+error.message);
+          toast.error(error.code+error.message);
         })
     }
     const signInWithGoogle=()=>{
@@ -74,6 +74,7 @@ export const FirebaseProvider=(props)=>{
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
+        toast.error(errorMessage);
         // The email of the user's account used.
         const email = error.customData.email;
         // The AuthCredential type that was used.

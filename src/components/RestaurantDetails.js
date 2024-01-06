@@ -21,8 +21,7 @@ const RestaurantDetails = () => {
      console.log(title);
      return (restaurantInfo.length===0)?<Shimmer/>: (
           <div className="text-center">
-          <div className="flex w-6/12 mx-auto h-auto justify-between border-dashed border-b-2">
-
+          <div className="flex w-8/12 sm:w-6/12 mx-auto h-auto justify-between border-dashed border-b-2">
            <div className="m-3 p-3 text-start">
                <h1 className="my-4 font-bold text-2xl">{restaurantInfo.name}</h1>
               <p className=" text-xs">{restaurantInfo.areaName}</p>
