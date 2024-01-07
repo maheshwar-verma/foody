@@ -1,28 +1,54 @@
 import React, { useState,useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import UserContext from "../utils/userContext";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Logo_Url } from "../constants";
 import { useFirebase } from "./context/firebase";
 import toast from "react-hot-toast";
+import { setAddress } from "../utils/addressSlice";
+import { selectCity } from "../utils/citySlice";
 function Navbar(){
-    
+    const dispatch=useDispatch();
     const firebase=useFirebase();
     const nav=firebase.isLoggedin?"":" hidden";
     const data=useContext(UserContext);
     const[open,setOpen]=useState(false);
+    const [location,setLocation]=useState({
+            latitude: "28.6520",
+            longitude: "77.2315",
+    });
+       
+    const {city}=useSelector(selectCity);
     //subscribing to the store using selector
     const cartItems=useSelector((store)=>store.cart.items);
     console.log(cartItems);
+    
+    const handleLocation=async()=>{
+      navigator.geolocation.getCurrentPosition((position)=>{
+        const {latitude,longitude}=position.coords;
+        console.log(position.coords);
+        
+        setLocation({latitude,longitude});
+      });
+      console.log(location);
+    }
+    useEffect(() => {
+        dispatch(setAddress(location));
+      }, [dispatch, location,handleLocation]);
     return (
-    <div className={"shadow-md bg-amber-200"+nav}>
+      <div className={"shadow-md bg-amber-200"+nav}>
          <div className="md:flex items-center justify-between py-4">
            <div className="items-center flex cursor-pointer">
            <Link to='/'>
        <img className="h-16 px-2" src={Logo_Url} alt='logo'/>
          </Link>
+         {/* <button className="border border-black bg-blue-300" onClick={()=>handleLocation()}>location</button> */}
+         <div className="m-2 p-2" onClick={()=>handleLocation()}>
+            <img className="w-[2.5rem] mx-auto items-center" src="https://png.pngtree.com/png-clipart/20220605/original/pngtree-location-pin-icon-with-map-png-image_7949099.png"/>
+            {city}
+         </div>
            </div>
-           <div className="absolute cursor-pointer md:hidden bg-grey-800 z-[10] right-8 top-6">
+           <div className="absolute cursor-pointer md:hidden bg-grey-800 z-[10] right-8 top-11">
            <img onClick={()=>{setOpen(!open)}} className="h-10" src={!open?"https://www.freeiconspng.com/uploads/menu-icon-28.png":"https://www.freeiconspng.com/uploads/close-icon-47.png"}/>
            
            </div>
