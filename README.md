@@ -39,6 +39,14 @@ npm install
 npm start
 ```
 
+## This site looks like this:
+
+
+https://github.com/maheshwar-verma/foody/assets/115862713/efd7e6a8-9a62-436c-a637-67bf43fc88c8
+
+
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
