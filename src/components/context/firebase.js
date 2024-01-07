@@ -85,6 +85,7 @@ export const FirebaseProvider=(props)=>{
     const signOutUser=()=>{
       signOut(firebaseAuth).then(()=>{
         toast("Signed out");
+        localStorage.removeItem("address");
       })
       .catch((err)=>{
         toast.error(err);
