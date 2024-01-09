@@ -18,6 +18,7 @@ A food delivery application made using React and Swiggy's API.
 - Shimmer UI
 - Authentication
 - mobile responsive
+- It will not get broken by minor change in swiggy's api.
 
 ## How to use
 
